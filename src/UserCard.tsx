@@ -1,31 +1,45 @@
-import React from 'react';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {EditOutlined, EllipsisOutlined, SettingOutlined} from '@ant-design/icons';
+import {Card} from 'antd';
+import {User} from "./User";
+import {getUser} from "./request";
 
 const { Meta } = Card;
 
-const UserCard: React.FC = ({user}) => (
 
-    <Card
-        style={{ width: 300 }}
-        cover={
-            <img
-                alt="example"
-                src="{user.avatar_url}"
+
+const UserCard=  (props:any) => {
+    const [user, setUser] = useState<User>({
+        name: "",
+        id: 0,
+        photoUrls:[]
+    })
+
+
+    useEffect(() => {
+        getUser().then(data=>{setUser(data)
+        console.log(data)})
+    }, [])
+    return (<Card
+            // style={{width: 300}}
+            className={'flex flex-wrap items-center justify-center'}
+            cover={
+                <img
+                    alt="example"
+                    src={user.photoUrls[props.index]}
+                />
+            }
+            actions={[
+                <SettingOutlined key="setting"/>,
+                <EditOutlined key="edit"/>,
+                <EllipsisOutlined key="ellipsis"/>,
+            ]}
+        >
+            <Meta
+                title={user.id}
+                description="This is the description"
             />
-        }
-        actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
-        ]}
-    >
-        <Meta
-            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-            title="${user.id}"
-            description="This is the description"
-        />
-    </Card>
-);
-
+        </Card>
+    );
+}
 export default UserCard;

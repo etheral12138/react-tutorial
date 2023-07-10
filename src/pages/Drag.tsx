@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {useDrag, useDrop} from 'ahooks';
 
 const DragItem = ({data}: any) => {
@@ -35,7 +35,9 @@ export default () => {
     const [isHovering, setIsHovering] = useState(false);
 
     const dropRef = useRef(null);
-
+    useEffect(()=>{
+        document.documentElement.classList.add('dark')
+    },[])
     useDrop(dropRef, {
         onText: (text, e) => {
             console.log(e);
@@ -54,19 +56,21 @@ export default () => {
         },
         onDragEnter: () => setIsHovering(true),
         onDragLeave: () => setIsHovering(false),
+
     });
 
     return (
         <div>
-            <div ref={dropRef} style={{border: '1px dashed #e8e8e8', padding: 16, textAlign: 'center'}}>
-                {isHovering ? 'release here' : 'drop here'}
-            </div>
-
-            <div style={{display: 'flex', marginTop: 8}}>
-                {['1', '2', '3', '4', '5'].map((e, i) => (
-                    <DragItem key={e} data={e}/>
-                ))}
-            </div>
+           <>
+               <div onClick={()=>console.error('1')} style={{display: 'flex', marginTop: 8}}>
+                   {['1', '2', '3', '4', '5'].map((e, i) => (
+                       <DragItem key={e} data={e}  />
+                   ))}
+               </div>
+               <div ref={dropRef} style={{border: '1px dashed #e8e8e8', padding: 16, textAlign: 'center'}}>
+                   {isHovering ? 'release here' : 'drop here'}
+               </div>
+           </>
         </div>
     );
 };
