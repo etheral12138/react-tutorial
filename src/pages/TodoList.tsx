@@ -67,7 +67,7 @@ const TodoList = () => {
         <>
                     <Layout draggable  className={'w-screen h-screen p-0 m-0'}>
                         <Header  className={'flex items-center p-2'}>
-                            <img className={'mr-5'} src="./react.svg" alt=""/>
+                            <img className={'mr-5'} src={"./react.svg"} alt=""/>
                             <span className={'text-white font-bold text-3xl'}>TodoList</span>
                         </Header>
                         <Layout >
