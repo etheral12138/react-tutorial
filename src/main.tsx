@@ -7,7 +7,8 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import Drag from "./pages/Drag";
-import {Ref} from "./pages/Ref";
+import Ref from "./pages/Ref";
+import Boolean from "./pages/Boolean";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path:"/ref",
         element:<Ref/>
+    },
+    {
+        path: "/boolean",
+        element: <Boolean/>
     }
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

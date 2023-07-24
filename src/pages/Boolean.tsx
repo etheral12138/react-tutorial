@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useInterval } from 'ahooks';
+import {Button, Card} from "antd";
 
-export default Boolean= () => {
+const Boolean=() => {
     const [count, setCount] = useState(0);
     const [interval, setInterval] = useState<number | undefined>(1000);
 
@@ -11,23 +12,27 @@ export default Boolean= () => {
 
     return (
         <div>
-            <p> count: {count} </p>
-            <p style={{ marginTop: 16 }}> interval: {interval} </p>
-            <button
+
+            <Card title="useInterval" className={'w-full'}  >
+                <p> count: {count} </p>
+                <p style={{ marginTop: 16 }}> interval: {interval} </p>
+            </Card>
+            <Button
                 onClick={() => setInterval((t) => (!!t ? t + 1000 : 1000))}
                 style={{ marginRight: 8 }}
             >
                 interval + 1000
-            </button>
-            <button
+            </Button>
+            <Button
                 style={{ marginRight: 8 }}
                 onClick={() => {
                     setInterval(1000);
                 }}
             >
                 reset interval
-            </button>
-            <button onClick={clear}>clear</button>
+            </Button>
+            <Button onClick={clear}>clear</Button>
         </div>
     );
 };
+export default Boolean
