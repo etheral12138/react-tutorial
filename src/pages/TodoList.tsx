@@ -1,95 +1,83 @@
 import React, {useState} from "react";
-import {Button, Input, Layout, MenuProps, Modal, Space, theme} from "antd";
+import {Button, Col, Input, Layout, Modal, Row, Space, theme} from "antd";
+import {LineOutlined} from "@ant-design/icons";
 
-const {Header, Footer, Content} = Layout;
-
-// const TodoListItem = (props: TodoListItemProps) => {
-//     return (
-//         <div>
-//             <li >{props.text}</li>
-//             <Button onClick={()=>{
-//             }}>删除</Button>
-//         </div>
-//     )
-// }
-type MenuItem = Required<MenuProps>['items'][number];
+const {Header} = Layout;
 const TodoList = () => {
-    const [todo, setTodo] = useState<string[]>([])
+    const [todos, setTodos] = useState<string[]>([])
     const [input, setInput] = useState('')
     const [newTodo, setNewTodo] = useState('');
-    const [edit, setEdit] = useState(null)
     const [visible, setVisible] = useState(false);
     const {
-        token: { colorBgContainer },
+        token: {colorBgContainer},
     } = theme.useToken();
-    const handleAdd = () => {
-        setTodo([...todo, input])
+    const handleAdd = (input: string) => {
+        setTodos([...todos, input])
     }
-    const handleEdit = (index: any) => {
-        setEdit(index)
+    const handleEdit = () => {
         setVisible(true)
     }
     const handleConfirm = (index: number, newValue: string) => {
-        const newTodos = [...todo];
+        const newTodos = [...todos];
         newTodos[index] = newValue;
-        setTodo(newTodos);
-        setEdit(null);
+        setTodos(newTodos);
     }
     const handleCancel = () => {
         setVisible(false)
     }
     const handleDelete = (index: number) => {
-        setTodo(todo.filter((item2, index2) => index2 !== index))
+        setTodos(todos.filter((_, index2) => index2 !== index))
     }
     return (
         <>
-                    <Layout draggable  className={'w-screen h-screen p-0 m-0'}>
-                        <Header  className={'flex items-center p-2'}>
-                            <img className={'mr-5'} src={"./react.svg"} alt=""/>
-                            <span className={'text-white font-bold text-3xl'}>TodoList</span>
-                        </Header>
-                        <Layout >
-                            <Layout>
-                                    <Content className={'flex justify-center items-center'}>
+            <Layout className={'w-screen h-screen p-0 m-0'}>
+                <Header className={'flex items-center p-2'}>
+                    <img className={'mr-5'} src={"./react.svg"} alt=""/>
+                    <span className={'text-white font-bold text-3xl'}>TodoList</span>
+                </Header>
+                <Row
+                    align={"middle"}
+                    justify={"space-around"}
+                >
+                    <Col span={12}>
+                        <Space>
+                            <Input placeholder={'请输入待办事项'} type="text" value={input}
+                                   onChange={(e) => setInput(e.target.value)}/>
+                            <Button onClick={() => handleAdd(input)}>增加</Button>
+                        </Space>
+                    </Col>
+                    <Col span={12}>
+                        {todos.map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <LineOutlined rev={undefined}/>
+                                        {item}
+                                        <Modal
+                                            open={visible}
+                                            footer={null}
+                                            onCancel={() => handleCancel()}
+                                        >
+                                            <Space>
+                                                <Input
+                                                    type="text"
+                                                    value={newTodo}
+                                                    onChange={(e) => setNewTodo(e.target.value)}
+                                                />
+                                                <Button onClick={() => handleConfirm(index, newTodo)}>确认</Button>
+                                            </Space>
+                                        </Modal>
                                         <Space>
-                                            <Input placeholder={'请输入待办事项'} type="text" value={input}
-                                                onChange={(e) => setInput(e.target.value)}/>
-                                            <Button onClick={() => handleAdd}>增加</Button>
-                                        </Space>
-                                    </Content>
-                                <Footer>
-                                    {todo.map((item, index) =>{
-                                            return(
-                                                <li className={'flex justify-center content-center'} key={index}>
-                                                    {item}
-                                                    {
-                                                        edit === index && (
-                                                            <Modal
-                                                                open={visible}
-                                                                footer={null}
-                                                                onCancel={() => handleCancel}
-                                                            >
-                                                                <Input
-                                                                    type="text"
-                                                                    value={newTodo}
-                                                                    onChange={(e) => setNewTodo(e.target.value)}
-                                                                />
-                                                                <Button
-                                                                    onClick={() => handleConfirm(index, newTodo)}>确认</Button>
-                                                            </Modal>
-                                                        )
-                                                    }
-                                                    <Button onClick={() => handleEdit(index)}>编辑</Button>
+                                            <Button onClick={() => handleEdit()}>编辑</Button>
                                                     <Button onClick={() => handleDelete(index)}>删除</Button>
-                                                </li>
-                                            )
-                                        }
-                                    )
-                                    }
-                                </Footer>
-                            </Layout>
-                        </Layout>
-                    </Layout>
+                                        </Space>
+                                    </div>
+                                )
+                            }
+                        )
+                        }
+                    </Col>
+                </Row>
+            </Layout>
         </>
     )
 }
