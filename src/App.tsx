@@ -52,43 +52,11 @@
 // // </>
 //     );
 // }
-
 import React from 'react';
-import {Alert, Col, Row, Space, Spin} from 'antd';
-// import Drag from "./pages/Drag";
 import TodoList from "./pages/TodoList";
+
 const App: React.FC = () => (
-    <div>
         <TodoList />
-    </div>
-    // <Space direction="vertical" style={{ width: '100%' }}>
-    //     <Space>
-    //         {/*<Spin tip="Loading" size="small">*/}
-    //         {/*    <div className="content" />*/}
-    //
-    //         {/*</Spin>*/}
-    //         <Col>
-    //             <Row>
-    //                 <Spin tip="Loading" size="large">
-    //                     <div className="content" />
-    //                 </Spin>
-    //             </Row>
-    //             <Row>
-    //                 <Spin tip="Loading">
-    //                     <div className="content" />
-    //                 </Spin>
-    //             </Row>
-    //         </Col>
-    //     </Space>
-    //
-    //     <Spin tip="Loading...">
-    //         <Alert
-    //             message="Alert message title"
-    //             description="Further details about the context of this alert."
-    //             type="info"
-    //         />
-    //     </Spin>
-    // </Space>
 );
 
 // export default App;
