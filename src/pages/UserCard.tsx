@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {EditOutlined, EllipsisOutlined, SettingOutlined} from '@ant-design/icons';
 import {Card} from 'antd';
 import {User} from "./User";
 import {getUser} from "../api/request";
@@ -29,11 +28,6 @@ const UserCard=  (props:any) => {
                     src={user.photoUrls[props.index]}
                 />
             }
-            actions={[
-                <SettingOutlined key="setting"/>,
-                <EditOutlined key="edit"/>,
-                <EllipsisOutlined key="ellipsis"/>,
-            ]}
         >
             <Meta
                 title={user.id}

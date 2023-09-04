@@ -7,7 +7,7 @@ import Drag from "./pages/Drag";
 import Ref from "./pages/Ref";
 import Boolean from "./pages/Boolean";
 import Effect from "./pages/Effect";
-import Hl from "./pages/Hl";
+import Bear from "./pages/Bear";
 
 const router = createBrowserRouter([
     {
@@ -31,9 +31,9 @@ const router = createBrowserRouter([
         element: <Effect/>
     },
     {
-        path: "/hl",
-        element: <Hl/>
-    },
+        path: "/bears",
+        element: <Bear/>
+    }
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
