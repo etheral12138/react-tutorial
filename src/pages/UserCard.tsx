@@ -14,7 +14,6 @@ const UserCard=  (props:any) => {
         photoUrls:[]
     })
 
-
     useEffect(() => {
         getUser().then(data=>{setUser(data)
         console.log(data)})

@@ -8,6 +8,8 @@ import Ref from "./pages/Ref";
 import Boolean from "./pages/Boolean";
 import Effect from "./pages/Effect";
 import Bear from "./pages/Bear";
+import KeyDown from "./pages/KeyDown";
+import Request from "./pages/Request";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
     {
         path: "/bears",
         element: <Bear/>
+    },
+    {
+        path: "/keydown",
+        element: <KeyDown/>
+    },
+    {
+        path: "/request",
+        element: <Request/>
     }
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

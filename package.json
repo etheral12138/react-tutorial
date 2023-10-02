@@ -13,13 +13,16 @@
     "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-highlight-words": "^0.16.4",
+    "@types/react-keyboard-event-handler": "^1.5.2",
     "ahooks": "^3.7.8",
     "antd": "^5.4.7",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-highlight-words": "^0.20.0",
+    "react-keyboard-event-handler": "^1.5.4",
     "react-router-dom": "^6.14.2",
+    "swr": "^2.2.4",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
